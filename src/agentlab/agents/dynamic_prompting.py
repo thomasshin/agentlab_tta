@@ -2,6 +2,7 @@ import abc
 import logging
 import platform
 import time
+import json
 from copy import copy, deepcopy
 from dataclasses import asdict, dataclass
 from textwrap import dedent
@@ -9,9 +10,13 @@ from typing import Literal
 from warnings import warn
 
 import bgym
-from bgym import HighLevelActionSetArgs
 from browsergym.core.action.base import AbstractActionSet
-from browsergym.utils.obs import flatten_axtree_to_str, flatten_dom_to_str, overlay_som, prune_html
+from browsergym.utils.obs import (
+    flatten_axtree_to_str,
+    flatten_dom_to_str,
+    overlay_som,
+    prune_html,
+)
 
 from agentlab.llm.llm_utils import (
     BaseMessage,
@@ -95,7 +100,7 @@ class ObsFlags(Flags):
 
 @dataclass
 class ActionFlags(Flags):
-    action_set: HighLevelActionSetArgs = None  # should be set by the set_benchmark method
+    action_set: bgym.HighLevelActionSetArgs = None  # should be set by the set_benchmark method
     long_description: bool = True
     individual_examples: bool = False
 
@@ -388,7 +393,6 @@ Tab {page_index}{active_or_not}:
             prompt_pieces.append(prompt_piece)
         return "\n".join(prompt_pieces)
 
-
 class Observation(Shrinkable):
     """Observation of the current step.
 
@@ -399,7 +403,7 @@ class Observation(Shrinkable):
         super().__init__()
         self.flags = flags
         self.obs = obs
-
+        
         self.tabs = Tabs(
             obs,
             visible=lambda: flags.use_tabs,
@@ -565,9 +569,12 @@ or click and wait for the reaction of the page.
 
 class SystemPrompt(PromptElement):
     _prompt = """\
-You are an agent trying to solve a web task based on the content of the page and
-user instructions. You can interact with the page and explore, and send messages to the user. Each time you
-submit an action it will be sent to the browser and you will receive a new page."""
+You are an AI agent designed to solve web tasks.
+You will be given multiple user profiles, each with preferences. You can choose one or more appropriate profiles to solve the task.
+Your primary goal is to fulfill user instructions while strictly adhering to user preferences.
+You can interact with the web page, explore its content, and send messages to the user.
+Upon submitting an action, the browser state will update, and you will receive a new page view for your next action.
+"""
 
 
 class ActionPrompt(PromptElement):

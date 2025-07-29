@@ -4,6 +4,7 @@ Prompt builder for GenericAgent
 It is based on the dynamic_prompting module from the agentlab package.
 """
 
+import re
 import logging
 from dataclasses import dataclass
 
@@ -63,6 +64,7 @@ class MainPrompt(dp.Shrinkable):
         previous_plan: str,
         step: int,
         flags: GenericPromptFlags,
+        all_user_profiles: dict,
     ) -> None:
         super().__init__()
         self.flags = flags
@@ -84,7 +86,8 @@ class MainPrompt(dp.Shrinkable):
             obs_history[-1],
             self.flags.obs,
         )
-
+        self.all_user_profiles = all_user_profiles # 전체 ALL_USER_PROFILES를 저장합니다.
+        
         self.action_prompt = dp.ActionPrompt(action_set, action_flags=flags.action)
 
         def time_for_caution():
@@ -102,10 +105,42 @@ class MainPrompt(dp.Shrinkable):
 
     @property
     def _prompt(self) -> HumanMessage:
-        prompt = HumanMessage(self.instructions.prompt)
-        prompt.add_text(
-            f"""\
+        prompt_text = f"""\
+{self.instructions.prompt}\
 {self.obs.prompt}\
+"""
+        # --- User Profile Selection Logic ---
+        if self.all_user_profiles:
+            prompt_text += "\n--- Available User Profiles ---\n"
+            prompt_text += "You have access to several user profiles, each with unique preferences. "
+            # **변경된 지시:** 하나 또는 그 이상을 선택하도록 명확히 지시
+            prompt_text += "Your task is to **select one or more of the most relevant user profiles** for the current goal. "
+            prompt_text += "If the goal explicitly names a user, prioritize that profile. Otherwise, infer the best fit. "
+            # **변경된 태그 이름:** <selected_user_profiles> (복수형)
+            prompt_text += "After selecting, use the `<selected_user_profiles>` tag to **list the name(s) of the chosen user(s) and their key preferences**. "
+            # **복수 선택 시 조합 설명 요구 추가:**
+            prompt_text += "If you select multiple profiles, also **briefly explain how you will combine their preferences** for this task.\n\n"
+
+            for user_name, user_data in self.all_user_profiles.items():
+                prompt_text += f"User: **{user_name}**\n"
+                # 'profile' 키가 실제 선호도 데이터를 가지고 있다고 가정
+                for key, value in user_data.get("profile", {}).items(): 
+                    prompt_text += f"- {key}: {value}\n"
+                prompt_text += "\n" # 각 프로필 사이에 개행 추가
+            prompt_text += "--- End Available User Profiles ---\n\n"
+
+            # LLM이 선택된 프로필을 출력하도록 지시 (복수 선택 예시 추가)
+            prompt_text += "<selected_user_profiles>\n"
+            prompt_text += "State the selected user(s)' name(s) and summarize their key preferences for this task here. If multiple, explain the combination.\n"
+            prompt_text += "Example 1 (Single): **Oliver**: Likes to sort by price descending, prefers 'Sephora' skincare, contact via phone.\n"
+            prompt_text += "Example 2 (Multiple): **Oliver** (price sensitive, prioritizes low price) & **Sophia** (eco-friendly, prioritizes sustainable products). I will first filter for eco-friendly products, then sort by price descending.\n"
+            prompt_text += "</selected_user_profiles>\n\n"
+            
+            # **변경된 지시:** "selected user profile(s)" (복수형)
+            prompt_text += "Must strongly refer to the preferences within your **selected user profile(s)** when making decisions for actions (e.g., sorting, brand choice, contact method), and then answer accordingly.\n\n"
+        # --- End User Profile Selection Logic ---
+
+        prompt_text += f"""\
 {self.history.prompt}\
 {self.action_prompt.prompt}\
 {self.hints.prompt}\
@@ -115,7 +150,7 @@ class MainPrompt(dp.Shrinkable):
 {self.memory.prompt}\
 {self.criticise.prompt}\
 """
-        )
+        prompt = HumanMessage(prompt_text)
 
         if self.flags.use_abstract_example:
             prompt.add_text(
@@ -125,6 +160,9 @@ class MainPrompt(dp.Shrinkable):
 Here is an abstract version of the answer with description of the content of
 each tag. Make sure you follow this structure, but replace the content with your
 answer:
+<selected_user_profiles>
+Name(s) of the selected user(s) and relevant preferences for the task. If multiple, how to combine.
+</selected_user_profiles>
 {self.think.abstract_ex}\
 {self.plan.abstract_ex}\
 {self.memory.abstract_ex}\
@@ -140,6 +178,9 @@ answer:
 
 Here is a concrete example of how to format your answer.
 Make sure to follow the template with proper tags:
+<selected_user_profiles>
+**Oliver** (price sensitive) & **Sophia** (eco-friendly). I will prioritize eco-friendly products first, then sort by price.
+</selected_user_profiles>
 {self.think.concrete_ex}\
 {self.plan.concrete_ex}\
 {self.memory.concrete_ex}\
@@ -155,13 +196,26 @@ Make sure to follow the template with proper tags:
 
     def _parse_answer(self, text_answer):
         ans_dict = {}
+        # Parse the selected_user_profiles tag
+        # 태그 이름 변경: 'selected_user_profile' -> 'selected_user_profiles'
+        # merge_multiple=True 옵션 제거: 이제 LLM이 이 태그 안에 모든 정보를 직접 넣을 것입니다.
+        parsed_user_profile = parse_html_tags_raise(text_answer, optional_keys=["selected_user_profiles"])
+        
+        # 'selected_user_profiles' 키가 있으면 ans_dict에 추가
+        if "selected_user_profiles" in parsed_user_profile:
+            ans_dict["selected_user_profiles"] = parsed_user_profile["selected_user_profiles"]
+        else:
+            # 태그가 없으면 빈 문자열로 설정하여 KeyError 방지
+            ans_dict["selected_user_profiles"] = "" 
+            logging.warning("No <selected_user_profiles> tag found in LLM response.")
+
+
         ans_dict.update(self.think.parse_answer(text_answer))
         ans_dict.update(self.plan.parse_answer(text_answer))
         ans_dict.update(self.memory.parse_answer(text_answer))
         ans_dict.update(self.criticise.parse_answer(text_answer))
         ans_dict.update(self.action_prompt.parse_answer(text_answer))
         return ans_dict
-
 
 class Memory(dp.PromptElement):
     _prompt = ""  # provided in the abstract and concrete examples
