@@ -1,0 +1,1429 @@
+[
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 0,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My favorite year is {{year}}. What is the top-{{n}} best-selling product in my favorite year?",
+    "instantiation_dict": {
+      "n": 1,
+      "year": 2022
+    },
+    "intent": "My favorite year is 2022. What is the top-1 best-selling product in my favorite year?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Quest Lumaflex\u2122 Band"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Quest Lumaflex\u2122 Band"
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 1,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My favorite year is {{year}}. What is the top-{{n}} best-selling product in my favorite year?",
+    "instantiation_dict": {
+      "n": 2,
+      "year": 2022
+    },
+    "intent": "My favorite year is 2023. What are the top-3 best-selling product in my favorite year?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Sprite Yoga Strap 6 foot",
+          "Overnight Duffle",
+          "Ida Workout Parachute Pant-29-Purple"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Sprite Yoga Strap 6 foot, Overnight Duffle, Ida Workout Parachute Pant-29-Purple"
+    },
+    "intent_template_id": 0
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 2,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My birthday is in {{month}}. What are the top-{{n}} best-selling product during my birthday month in 2023?",
+    "instantiation_dict": {
+      "month": "January",
+      "n": 3
+    },
+    "intent": "My birthday is in January. What are the top-3 best-selling product during my birthday month in 2023?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Impulse Duffle",
+          "Overnight Duffle",
+          "Hawkeye Yoga Short-32-Blue"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Impulse Duffle, Overnight Duffle, Hawkeye Yoga Short-32-Blue"
+    },
+    "intent_template_id": 1
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 3,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am interested in reviews with {{sentiment}}. Can you tell me the the number of reviews that our store received by far that match my interest?",
+    "instantiation_dict": {
+      "sentiment": "disappointment"
+    },
+    "intent": "I am interested in reviews with disappointment. Can you tell me the the number of reviews that our store received by far that match my interest?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "6"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "6"
+    },
+    "intent_template_id": 2
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 4,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am interested in reviews with {{sentiment}}. Can you tell me the the number of reviews that our store received by far that match my interest?",
+    "instantiation_dict": {
+      "sentiment": "satisfaction"
+    },
+    "intent": "I am interested in reviews with satisfaction. Can you tell me the the number of reviews that our store received by far that match my interest?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "2"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "2"
+    },
+    "intent_template_id": 2
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 5,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love the term \"{{term}}\". Can you tell me the the number of reviews that our store received by far that mention my favorite term?",
+    "instantiation_dict": {
+      "term": "decent"
+    },
+    "intent": "I love the term \"decent\". Can you tell me the the number of reviews that our store received by far that mention my favorite term?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "2"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "2"
+    },
+    "intent_template_id": 3
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 6,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love the word \"{{word}}\". Can you tell me the the number of reviews that our store received by far that mention my favorite word?",
+    "instantiation_dict": {
+      "word": "best"
+    },
+    "intent": "I love the word \"best\". Can you tell me the the number of reviews that our store received by far that mention my favorite word?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "2"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "2"
+    },
+    "intent_template_id": 4
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 7,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My favorite product category is {{category}}. Based on the top 5 search terms in my store, can you tell me which term I prefer?",
+    "instantiation_dict": {
+      "category": "bag"
+    },
+    "intent": "My favorite product category is bag. Based on the top 5 search terms in my store, can you tell me which term I prefer?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Joust Bag"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Joust Bag"
+    },
+    "intent_template_id": 5
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 8,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My favorite product category is {{category}}. Based on the top 5 search terms in my store, can you tell me which term I prefer?",
+    "instantiation_dict": {
+      "category": "clothing"
+    },
+    "intent": "My favorite product category is clothing. Based on the top 5 search terms in my store, can you tell me which term I prefer?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "hollister",
+          "tanks",
+          "Antonia Racer Tank"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "hollister, Joust Bag, Antonia Race Tank"
+    },
+    "intent_template_id": 5
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 12,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am very interested in {{order_type}} orders only. Can you present the monthly count of orders of my interest from {{period}} in MM:COUNT format?",
+    "instantiation_dict": {
+      "order_type": "successful",
+      "period": "May to December 2022"
+    },
+    "intent": "I am very interested in successful orders only. Can you present the monthly count of orders of my interest from May to December 2022 in MM:COUNT format?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "May: 8 orders",
+          "June: 13 orders",
+          "July: 9 orders",
+          "August: 8 orders",
+          "Sepetember: 10 orders",
+          "October: 4 orders",
+          "November: 5 orders",
+          "December: 10 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders December: 10 orders  "
+    },
+    "intent_template_id": 9
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 13,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am very interested in {{order_type}} orders only. Can you present the monthly count of orders of my interest from {{period}} in MM:COUNT format?",
+    "instantiation_dict": {
+      "order_type": "successful",
+      "period": "01/2023-05/2023"
+    },
+    "intent": "I am very interested in successful orders only. Can you present the monthly count of orders of my interest from 01/2023-05/2023 in MM:COUNT format?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "January: 12 orders",
+          "Feburary: 7 orders",
+          "March: 5 orders",
+          "April: 9 orders",
+          "May: 5 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "January: 12 orders Febulary: 7 orders March: 5 orders Apirl: 9 orders May: 5 orders"
+    },
+    "intent_template_id": 9
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 14,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am very interested in {{order_type}} orders only. Can you present the monthly count of orders of my interest from {{period}} in MM:COUNT format?",
+    "instantiation_dict": {
+      "order_type": "successful",
+      "period": "Jan to December 2022"
+    },
+    "intent": "I am very interested in successful orders only. Can you present the monthly count of orders of my interest from Jan to December 2022 in MM:COUNT format?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "January: 11 orders",
+          "Feburary: 16 orders",
+          "March: 14 orders",
+          "April: 7 orders",
+          "May: 8 orders",
+          "June: 13 orders",
+          "July: 9 orders",
+          "August: 8 orders",
+          "Sepetember: 10 orders",
+          "Octorbor: 4 orders",
+          "November: 5 orders",
+          "December: 10 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "January: 11 orders Feburary: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders December: 10 orders  "
+    },
+    "intent_template_id": 9
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 15,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am very interested in {{order_type}} orders only. Can you present the monthly count of orders of my interest from {{period}} in MM:COUNT format?",
+    "instantiation_dict": {
+      "order_type": "successful",
+      "period": "from Feb to Nov 2022"
+    },
+    "intent": "I am very interested in successful orders only. Can you present the monthly count of orders of my interest from Feb to Nov 2022 in MM:COUNT format",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Feburary: 16 orders",
+          "March: 14 orders",
+          "April: 7 orders",
+          "May: 8 orders",
+          "June: 13 orders",
+          "July: 9 orders",
+          "August: 8 orders",
+          "Sepetember: 10 orders",
+          "Octorbor: 4 orders",
+          "November: 5 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Feburary: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders  "
+    },
+    "intent_template_id": 9
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 16,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I prefer to know {{type}} customers. Can you tell me the name of my preferred customer with {{product}}?",
+    "instantiation_dict": {
+      "type": "dissatisfied",
+      "product": "Circe fleece"
+    },
+    "intent": "I prefer to know dissatisfied customers. Can you tell me the name of my preferred customer with Circe fleece?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Hannah Lim"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Hannah Lim"
+    },
+    "intent_template_id": 10
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 17,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I prefer to know {{type}} customers. Can you tell me the name of my preferred customer with {{product}}?",
+    "instantiation_dict": {
+      "type": "dissatisfied",
+      "product": "Olivia zip jacket"
+    },
+    "intent": "I prefer to know dissatisfied customers. Can you tell me the name of my preferred customers with Olivia zip jacket?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Emma Lopez",
+          "Seam Miller"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Emma Lopez, Seam Miller"
+    },
+    "intent_template_id": 10
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 18,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I prefer to know {{type}} customers. Can you tell me the name of my preferred customer with {{product}}?",
+    "instantiation_dict": {
+      "product": "Antonia racer tank"
+    },
+    "intent": "I prefer to know dissatisfied customers. Can you tell me the name of my preferred customers with Antonia racer tank?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Shaunte",
+          "Merrie"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Shaunte, Merrie"
+    },
+    "intent_template_id": 10
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 19,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I prefer to know {{type}} customers. Can you tell me the name of my preferred customer with {{product}}?",
+    "instantiation_dict": {
+      "product": "Chloe tank"
+    },
+    "intent": "I prefer to know dissatisfied customers. Can you tell me the name of my preferred customers with Chloe tank",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": "N/A"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "There is no negative review for Chloe tank",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 10
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 20,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love to see {{type}} customers. Can you tell me the reasons why my favorite customers purchase {{product}}?",
+    "instantiation_dict": {
+      "type": "satisfied",
+      "product": "Antonia Racer Tank"
+    },
+    "intent": "I love to see satisfied customers. Can you tell me the reasons why my favorite customers purchase Antonia Racer Tank?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Its color and style is good"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Its color and style is good"
+    },
+    "intent_template_id": 11
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 21,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love to see {{type}} customers. Can you tell me the reasons why my favorite customers purchase {{product}}?",
+    "instantiation_dict": {
+      "type": "satisfied",
+      "product": "Ana Running Short"
+    },
+    "intent": "I love to see satisfied customers. Can you tell me the reasons why my favorite customers purchase Ana Running Short?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "It is comfortable"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "It is comfortable"
+    },
+    "intent_template_id": 11
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 22,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love to see {{type}} customers. Can you tell me the reasons why my favorite customers purchase {{product}}?",
+    "instantiation_dict": {
+      "product": "Circe hooded fleece"
+    },
+    "intent": "I love to see satisfied customers. Can you tell me the reasons why my favorite customers purchase Circe hooded fleece?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Warm and comfortable. True to size."
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Warm and comfortable. True to size."
+    },
+    "intent_template_id": 11
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 23,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love to see {{type}} products. Can you give me the {{attribute}} of the my favorite product?",
+    "instantiation_dict": {
+      "type": "sold-out",
+      "attribute": "name"
+    },
+    "intent": "I love to see sold-out products. Can you give me the name of the my favorite product?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Sinbad Fitness Tank"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Sinbad Fitness Tank"
+    },
+    "intent_template_id": 12
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 24,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I love to see {{type}} products. Can you give me the {{attribute}} of the my favorite product?",
+    "instantiation_dict": {
+      "type": "sold-out",
+      "attribute": "SKU"
+    },
+    "intent": "I love to see sold-out products. Can you give me the SKU of the my favorite product?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "MT09"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "MT09"
+    },
+    "intent_template_id": 12
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 25,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I do not like to see {{type}} order. Can you get the customer {{attribute}} of the most recent order that I do not prefer?",
+    "instantiation_dict": {
+      "type": "cancelled",
+      "attribute": "name"
+    },
+    "intent": "I do not like to see cancelled order. Can you get the customer name of the most recent order that I do not prefer?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Lily Potter"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Lily Potter"
+    },
+    "intent_template_id": 13
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 26,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I do not like to see {{type}} order. Can you get the total payment amount of the last {{N}} orders from my preferred type?",
+    "instantiation_dict": {
+      "type": "cancelled",
+      "N": "5"
+    },
+    "intent": "I do not like to see cancelled order. Can you get the total payment amount of the last 5 orders from my preferred type?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "778.2"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "annotation_note": "219.4+210+166.4+93.4+89",
+      "reference_answer_raw_annotation": "778.2"
+    },
+    "intent_template_id": 14
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 27,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I prefer to see {{type}} order. Can you get the {{attribute}} of the newest order from my preferred type?",
+    "instantiation_dict": {
+      "type": "pending",
+      "attribute": "order ID"
+    },
+    "intent": "I prefer to see pending order. Can you get the order ID of the newest order from my preferred type?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "299"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "299"
+    },
+    "intent_template_id": 15
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 28,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am interested in {{characteristic}} customers in my store. What are the key aspects that the customers of my interest think about {{product}}?",
+    "instantiation_dict": {
+      "characteristic": "dissatisfied",
+      "product": "Antonia Racer Tank"
+    },
+    "intent": "I am interested in dissatisfied customers in my store. What are the key aspects that the customers of my interest think about Antonia Racer Tank?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Not suitable for high-impact workouts"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Not suitable for high-impact workouts"
+    },
+    "intent_template_id": 16
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 29,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am interested in {{characteristic}} customers in my store. What are the key aspects that the customers of my interest think about {{product}}?",
+    "instantiation_dict": {
+      "product": "Zing Jump Rope"
+    },
+    "intent": "I am interested in dissatisfied customers in my store. What are the key aspects that the customers of my interest think about Zing Jump Rope?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "It is hard to find the right size. Won't last long"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "It is hard to find the right size. Won't last long"
+    },
+    "intent_template_id": 16
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 30,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am interested in {{characteristic}} customers in my store. What are the key aspects that the customers of my interest think about {{product}}?",
+    "instantiation_dict": {
+      "product": "Circe ice fleece"
+    },
+    "intent": "I am interested in dissatisfied customers in my store. What are the key aspects that the customers of my interest think about Circe ice fleece",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Material quality, fit, insufficient warmth, color"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Material quality, fit, insufficient warmth, color"
+    },
+    "intent_template_id": 16
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 31,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I am interested in {{characteristic}} customers in my store. What are the key aspects that the customers of my interest think about {{product}}?",
+    "instantiation_dict": {
+      "product": "Electra Bra Top"
+    },
+    "intent": "I am interested in dissatisfied customers in my store. What are the key aspects that the customers of my interest think about Electra Bra Top",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Not true to size"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Not true to size"
+    },
+    "intent_template_id": 16
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 32,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I hate customers who {{type}} the order. Can you tell me the {{attribute}} of the customer that I do not like, in the history?",
+    "instantiation_dict": {
+      "type": "cancel",
+      "attribute": "name"
+    },
+    "intent": "I hate customers who cancel the order. Can you tell me the name of the customer that I do not like, in the history?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "exact_match": "Samantha Jones"
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Samantha Jones"
+    },
+    "intent_template_id": 17
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 33,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I hate customers who {{type}} the order. Can you tell me the {{attribute}} of the customer that I do not like, in the history?",
+    "instantiation_dict": {
+      "type": "cancel",
+      "attribute": "email address, name, phone number"
+    },
+    "intent": "I hate customers who cancel the order. Can you tell me the email address, name, phone number of the customer who I do not like, in the history?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "email: coolcat321@hotmail.com",
+          "name: Samantha Jones",
+          "phone number: 3055551212"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "email: coolcat321@hotmail.com name: Samantha Jones phone number: 3055551212"
+    },
+    "intent_template_id": 17
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 34,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My favorite brand is {{brand}}. Can you mark all my favorite brand shirts on sale?",
+    "instantiation_dict": {
+      "brand": "Hollister"
+    },
+    "intent": "My favorite brand is Hollister. Can you mark all my favorite brand shirts on sale?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/126/",
+          "locator": "document.querySelector('input[name=\"product[sale]\"]').value",
+          "required_contents": {
+            "exact_match": "1"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 18
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 35,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I do not like {{product}}. Can you disable my disliked product from the site, they are facing some quality issues.",
+    "instantiation_dict": {
+      "product": "lHelios Endurance Tank"
+    },
+    "intent": "I do not like lHelios Endurance Tank. Can you disable my disliked product from the site, they are facing some quality issues.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/676/",
+          "locator": "document.querySelector('[name=\"product[status]\"').value",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 19
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 36,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I do not like {{product}}. Can you disable my disliked product from the site, they are facing some quality issues.",
+    "instantiation_dict": {
+      "product": "Cora Pant"
+    },
+    "intent": "I do not like Cora Pant. Can you disable my disliked product from the site, they are facing some quality issues.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1840/",
+          "locator": "document.querySelector('[name=\"product[status]\"').value",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 19
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 37,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I do not like {{product}}. Can you disable my disliked product from the site, they are facing some quality issues.",
+    "instantiation_dict": {
+      "product": "Karmen yoga pants"
+    },
+    "intent": "I do not like Karmen yoga pants. Can you disable my disliked product from the site, they are facing some quality issues.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__SHOPPING_ADMIN__/catalog/product/edit/id/1819/",
+          "locator": "document.querySelector('[name=\"product[status]\"').value",
+          "required_contents": {
+            "exact_match": "2"
+          }
+        }
+      ]
+    },
+    "intent_template_id": 19
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 38,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred type of order is \"{{type}}\". What's the total number of items sold in the most recent {{k}} orders from my preferred type?",
+    "instantiation_dict": {
+      "type": "complete",
+      "k": "2"
+    },
+    "intent": "My preferred type of order is \"complete\". What's the total number of items sold in the most recent 2 orders from my preferred type?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "3"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "3"
+    },
+    "intent_template_id": 20
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 39,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred type of order is \"{{type}}\". What's the total number of items sold in the most recent {{k}} orders from my preferred type?",
+    "instantiation_dict": {
+      "type": "pending",
+      "k": "4"
+    },
+    "intent": "My preferred type of order is \"pending\". What's the total number of items sold in the most recent 4 orders from my preferred type?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "15"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "15"
+    },
+    "intent_template_id": 20
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 40,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred type of order is \"{{status}}\". Can I get the total payment amount of the last {{N}} orders from my preferred type?",
+    "instantiation_dict": {
+      "status": "complete",
+      "N": "5"
+    },
+    "intent": "My preferred type of order is \"complete\". Can I get the total payment amount of the last 5 orders from my preferred type?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "555.2"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "555.2"
+    },
+    "intent_template_id": 21
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 41,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred type of order is \"{{status}}\". Can I get the total payment amount of the last {{N}} orders from my preferred type?",
+    "instantiation_dict": {
+      "status": "pending",
+      "N": "5"
+    },
+    "intent": "My preferred type of order is pending. Can I get the total payment amount of the last 5 orders from my preferred type?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "885.4"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "885.4"
+    },
+    "intent_template_id": 21
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 42,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "I prefer \"{{status_1}}\" orders. Can you compare the payment difference of the last {{N}} {{status_2}} orders and my preferred type of orders",
+    "instantiation_dict": {
+      "status_1": "complete",
+      "status_2": "cancelled",
+      "N": "4"
+    },
+    "intent": "I prefer \"complete\" orders. Can you compare the payment difference of the last 4 cancelled orders and my preferred type of orders",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "194.25"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "194.25"
+    },
+    "intent_template_id": 22
+  },
+    {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 43,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred contact method is {{method}}. Can you find the customer contact information in my preferred method, with phone number {{PhoneNum}}?",
+    "instantiation_dict": {
+      "method": "email",
+      "PhoneNum": "2065555555"
+    },
+    "intent": "My preferred contact method is email. Can you find the customer contact information in my preferred method, with phone number 2065555555?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "gamingpro456@gmail.com"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "gamingpro456@gmail.com"
+    },
+    "intent_template_id": 23
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 44,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred contact method is {{method}}. Can you find the customer contact information in my preferred method, with phone number {{PhoneNum}}?",
+    "instantiation_dict": {
+      "method": "email",
+      "PhoneNum": "8015551212"
+    },
+    "intent": "My preferred contact method is email. Can you find the customer contact information in my preferred method, with phone number 8015551212?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "sean.miller@gmail.com"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "sean.miller@gmail.com"
+    },
+    "intent_template_id": 23
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 45,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred contact method is {{method}}. Can you find the customer contact information in my preferred method, with email address {{email}}?",
+    "instantiation_dict": {
+      "method": "phone",
+      "email": "roni_cost@example.com"
+    },
+    "intent": "My preferred contact method is phone. Can you find the customer contact information in my preferred method, with email address roni_cost@example.com?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "(555) 229-3326"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "(555) 229-3326"
+    },
+    "intent_template_id": 24
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 46,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "My preferred contact method is {{method}}. Can you find the customer contact information in my preferred method, with email address {{email}}?",
+    "instantiation_dict": {
+      "method": "phone",
+      "email": "jennifer.white@yahoo.com"
+    },
+    "intent": "My preferred contact method is phone. Can you find the customer contact information in my preferred method, with email address jennifer.white@yahoo.com?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "2137418080"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "2137418080"
+    },
+    "intent_template_id": 24
+  }
+]

@@ -1,0 +1,545 @@
+[
+{
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 0,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "What are the top-{{n}} best-selling product in {{year}}",
+    "instantiation_dict": {
+      "n": 2,
+      "year": 2022
+    },
+    "intent": "Who will be interested in buying \"Quest Lumaflex™ Band\" among the top-5 best-selling products in 2022",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Emma",
+          "Ava"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Emma Ava"
+    },
+    "intent_template_id": 279
+  },
+{
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 1,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "What are the top-{{n}} best-selling product in {{period}}",
+    "instantiation_dict": {
+      "n": 3,
+      "period": "Jan 2023"
+    },
+    "intent": "Which of the top three best-selling products in January 2023 would Emma and Oliver prefer, respectively?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": "Emma prefers Hawkeye Yoga Short-32-Blue, Oliver prefers Impulse Duffle."
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "Emma prefers Hawkeye Yoga Short-32-Blue (cheapest one), Oliver prefers Impulse Duffle (the most expensive one).",
+      "reference_answer_raw_annotation": ""
+    },
+    "intent_template_id": 279
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 2,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Which product would Oliver and Ethan prefer from the most recent order?",
+    "instantiation_dict": {},
+    "intent": "Which product would Oliver and Ethan prefer from the most recent order?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Marco Lightweight Active Hoodie"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Marco Lightweight Active Hoodie"
+    },
+    "intent_template_id": 1002
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 3,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "What's the total number of items sold in the most recent {{k}} orders?",
+    "instantiation_dict": {
+      "k": "2"
+    },
+    "intent": "Which product would Emma and Ava prefer from the most recent 2 orders?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Argus All-Weather Tank"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Argus All-Weather Tank"
+    },
+    "intent_template_id": 1002
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 4,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
+    "instantiation_dict": {
+      "status": "completed",
+      "N": "5"
+    },
+    "intent": "Get the total payment amount of the last 3 orders to Emma, Ava and Oliver.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "341.8"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "341.8"
+    },
+    "intent_template_id": 367
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 5,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Get the total payment amount of the last {{N}} {{status}} orders",
+    "instantiation_dict": {
+      "status": "pending",
+      "N": "5"
+    },
+    "intent": "Get the total payment amount of the last 5 orders to Ethan and Tom.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "885.4"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "885.4"
+    },
+    "intent_template_id": 367
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 6,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Compare the payment difference of the last {{N}} {{status_1}} orders assigned to Roy and {{status_2}} orders assigned to Ava",
+    "instantiation_dict": {
+      "status_1": "cancelled",
+      "status_2": "completed",
+      "N": "4"
+    },
+    "intent": "Calculate the difference between the payments of the last four orders assigned to Roy and those of the last four orders assigned to Ava.",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "194.25"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "194.25"
+    },
+    "intent_template_id": 367
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 7,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Find the customer name and email with phone number {{PhoneNum}}",
+    "instantiation_dict": {
+      "PhoneNum": "555-229-3326"
+    },
+    "intent": "Can you tell Emma and Sophia the contact method of the customer with email address Veronica Costello?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "(555) 229-3326"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "(555) 229-3326"
+    },
+    "intent_template_id": 364
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 8,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "instantiation_dict": {
+      "period": "from May to December 2022"
+    },
+    "intent": "Presents the monthly count of orders for Oliver and Ava in November and December of 2022 in MM:COUNT format",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "November: 5 orders",
+          "December: 10 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "November: 5 orders December: 10 orders"
+    },
+    "intent_template_id": 270
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 9,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "instantiation_dict": {
+      "period": "01/2023-05/2023"
+    },
+    "intent": "Presents the monthly count of orders for Emma and Ava of period: 03/2023-05/2023 in MM:COUNT format",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "March: 5 orders",
+          "April: 9 orders",
+          "May: 5 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "March: 5 orders April: 9 orders May: 5 orders"
+    },
+    "intent_template_id": 270
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 10,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "instantiation_dict": {
+      "period": "from Jan to December 2022"
+    },
+    "intent": "Presents the monthly count of orders for Ethan and Sophia from May to June 2022 in MM:COUNT format",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "May: 2 orders",
+          "June: 0 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "May: 2 orders June: 0 orders"
+    },
+    "intent_template_id": 270
+  },
+  {
+    "sites": [
+      "shopping_admin"
+    ],
+    "task_id": 11,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_admin_state.json",
+    "start_url": "__SHOPPING_ADMIN__",
+    "geolocation": null,
+    "intent_template": "Presents the monthly count of successful orders {{period}} in MM:COUNT format",
+    "instantiation_dict": {
+      "period": "from Feb to Nov 2022"
+    },
+    "intent": "Presents the monthly count of successful orders from Feb to Nov 2022 in MM:COUNT format",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "fuzzy_match": [
+          "Feburary: 16 orders",
+          "March: 14 orders",
+          "April: 7 orders",
+          "May: 8 orders",
+          "June: 13 orders",
+          "July: 9 orders",
+          "August: 8 orders",
+          "Sepetember: 10 orders",
+          "Octorbor: 4 orders",
+          "November: 5 orders"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Feburary: 16 orders March: 14 orders April: 7 orders May: 8 orders June: 13 orders July: 9 orders August: 8 orders Sepetember: 10 orders Octorbor: 4 orders November: 5 orders  "
+    },
+    "intent_template_id": 270
+  },
+  {
+    "sites": [
+      "shopping"
+    ],
+    "task_id": 12,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_state.json",
+    "start_url": "__SHOPPING__",
+    "geolocation": null,
+    "intent_template": "What is the name of the cheapest product available from skin care brand that is the most popular among female?",
+    "instantiation_dict": {
+    },
+    "intent": "What is the name of the cheapest product available from skin care brand that is the most popular among female?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Perricone MD No Makeup Eyeshadow 0.3 Ounce"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Perricone MD No Makeup Eyeshadow 0.3 Ounce"
+    },
+    "intent_template_id": 370
+  },
+  {
+    "sites": [
+      "shopping"
+    ],
+    "task_id": 13,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_state.json",
+    "start_url": "__SHOPPING__",
+    "geolocation": null,
+    "intent_template": "What is the name of the cheapest product available from skin care brand that is the most popular among female?",
+    "instantiation_dict": {
+    },
+    "intent": "What is the name of the most expensive product available from skin care brand that is the most popular among male?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "Sephora Collection Skin Perfecting Brush Set"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "Sephora Collection Skin Perfecting Brush Set"
+    },
+    "intent_template_id": 370
+  },
+{
+    "sites": [
+      "shopping"
+    ],
+    "task_id": 14,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_state.json",
+    "start_url": "__SHOPPING__",
+    "geolocation": null,
+    "intent_template": "What is the minimum budget required to buy one product from each of Emma's and Oliver's favorite skincare brands?",
+    "instantiation_dict": {
+    },
+    "intent": "What is the minimum budget required to buy one product from each of Ava's and Oliver's favorite skincare brands?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "53.18"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "$53.18"
+    },
+    "intent_template_id": 370
+  },
+  {
+    "sites": [
+      "shopping"
+    ],
+    "task_id": 15,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_state.json",
+    "start_url": "__SHOPPING__",
+    "geolocation": null,
+    "intent_template": "What is the maximum budget possible to buy one product from each of Emma and Oliver's favorite skincare brands?",
+    "instantiation_dict": {
+    },
+    "intent": "What is the maximum budget possible to buy one product from each of Ava's and Oliver's favorite skincare brands?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+          "243.99"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "$243.99"
+    },
+    "intent_template_id": 370
+  },
+  {
+    "sites": [
+      "gitlab"
+    ],
+    "task_id": 16,
+    "require_login": true,
+    "storage_state": "./.auth/gitlab_state.json",
+    "start_url": "__GITLAB__",
+    "geolocation": null,
+    "intent_template": "Follow Oliver and Ava's besties on Gitlab",
+    "instantiation_dict": {
+    },
+    "intent": "Follow Oliver and Ava's besties on Gitlab",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "program_html"
+      ],
+      "reference_answers": null,
+      "reference_url": "",
+      "program_html": [
+        {
+          "url": "__GITLAB__/users/byteblaze/following",
+          "locator": "document.querySelector('.user-profile').outerText",
+          "required_contents": {
+            "must_include": [
+              "@abisubramanya27",
+              "@yjlou"
+            ]
+          }
+        }
+      ]
+    },
+    "intent_template_id": 330
+  }
+]
