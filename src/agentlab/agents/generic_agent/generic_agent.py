@@ -14,6 +14,7 @@ from functools import partial
 from warnings import warn
 
 import bgym
+import json
 from bgym import Benchmark
 from browsergym.experiments.agent import Agent, AgentInfo
 
@@ -30,6 +31,7 @@ from .generic_agent_prompt import GenericPromptFlags, MainPrompt
 class GenericAgentArgs(AgentArgs):
     chat_model_args: BaseModelArgs = None
     flags: GenericPromptFlags = None
+    custom_screenshots: list = None 
     max_retry: int = 4
 
     def __post_init__(self):
@@ -67,7 +69,7 @@ class GenericAgentArgs(AgentArgs):
 
     def make_agent(self):
         return GenericAgent(
-            chat_model_args=self.chat_model_args, flags=self.flags, max_retry=self.max_retry
+            chat_model_args=self.chat_model_args, flags=self.flags, max_retry=self.max_retry, custom_screenshots=self.custom_screenshots,
         )
 
 
@@ -78,11 +80,13 @@ class GenericAgent(Agent):
         chat_model_args: BaseModelArgs,
         flags: GenericPromptFlags,
         max_retry: int = 4,
+        custom_screenshots: list = None
     ):
 
         self.chat_llm = chat_model_args.make_model()
         self.chat_model_args = chat_model_args
         self.max_retry = max_retry
+        self.custom_screenshots = custom_screenshots # Store the data
 
         self.flags = flags
         self.action_set = self.flags.action.action_set.make_action_set()
@@ -98,6 +102,7 @@ class GenericAgent(Agent):
     def get_action(self, obs):
 
         self.obs_history.append(obs)
+        print(f"DEBUG: Agent has {len(self.custom_screenshots)} custom screenshots.")
         main_prompt = MainPrompt(
             action_set=self.action_set,
             obs_history=self.obs_history,
@@ -107,6 +112,7 @@ class GenericAgent(Agent):
             previous_plan=self.plan,
             step=self.plan_step,
             flags=self.flags,
+            custom_screenshots=self.custom_screenshots
         )
 
         max_prompt_tokens, max_trunc_itr = self._get_maxes()
@@ -125,6 +131,10 @@ class GenericAgent(Agent):
             # cause it to be too long
 
             chat_messages = Discussion([system_prompt, human_prompt])
+            print("--- DEBUGGING: PAYLOAD SENT TO LLM ---")
+            print(json.dumps(chat_messages.to_openai(), indent=2))
+            print("---------------------------------------")
+
             ans_dict = retry(
                 self.chat_llm,
                 chat_messages,

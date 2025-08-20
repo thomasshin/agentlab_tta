@@ -63,6 +63,7 @@ class MainPrompt(dp.Shrinkable):
         previous_plan: str,
         step: int,
         flags: GenericPromptFlags,
+        custom_screenshots: list = None # Add this new argument
     ) -> None:
         super().__init__()
         self.flags = flags
@@ -86,6 +87,7 @@ class MainPrompt(dp.Shrinkable):
         )
 
         self.action_prompt = dp.ActionPrompt(action_set, action_flags=flags.action)
+        self.custom_screenshots = custom_screenshots # Store the data
 
         def time_for_caution():
             # no need for caution if we're in single action mode
@@ -147,7 +149,20 @@ Make sure to follow the template with proper tags:
 {self.action_prompt.concrete_ex}\
 """
             )
-        return self.obs.add_screenshot(prompt)
+
+        # add_content 메서드를 사용하여 이미지를 추가합니다.
+        # 이것이 라이브러리가 의도한 방식입니다.
+        if self.custom_screenshots:
+            for screenshot_data in self.custom_screenshots:
+                if "type" in screenshot_data:
+                    content_type = screenshot_data["type"]
+                    content_data = screenshot_data.get(content_type)
+                    if content_data:
+                        prompt.add_content(content_type, content_data)
+
+        self.obs.add_screenshot(prompt)
+        
+        return prompt
 
     def shrink(self):
         self.history.shrink()

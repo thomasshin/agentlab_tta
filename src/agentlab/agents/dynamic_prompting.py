@@ -565,10 +565,19 @@ or click and wait for the reaction of the page.
 
 class SystemPrompt(PromptElement):
     _prompt = """\
-You are an agent trying to solve a web task based on the content of the page and
-user instructions. You can interact with the page and explore, and send messages to the user. Each time you
-submit an action it will be sent to the browser and you will receive a new page."""
+You are an agent tasked with solving web tasks based on the content of the page and
+the user’s instructions.
 
+In addition, you are provided with screenshots showing Oliver’s previous shopping trajectories.  
+Carefully analyze his actions in these trajectories (e.g., sorting choices, filtering, 
+navigation, button clicks) to infer his shopping preferences.
+
+You must consistently apply Oliver’s inferred preferences when solving the web tasks.  
+If you ignore them, you will fail to complete the task correctly.
+
+You can interact with the page, explore, and communicate with the user.  
+Each time you submit an action, it will be sent to the browser, and you will receive a new page.
+"""
 
 class ActionPrompt(PromptElement):
 
@@ -639,27 +648,6 @@ elements in the page is through bid which are specified in your observations.
 
         return ans_dict
 
-
-# def make_action_set(action_flags: ActionFlags) -> AbstractActionSet:
-
-#     if action_flags.action_set == "python":
-#         action_set = PythonActionSet(strict=action_flags.is_strict)
-#         if action_flags.demo_mode != "off":
-#             warn(
-#                 f'Action_set "python" is incompatible with demo_mode={repr(action_flags.demo_mode)}.'
-#             )
-#         return action_set
-
-#     action_set = HighLevelActionSet(
-#         subsets=list(set(["chat"] + ["infeas"] + action_flags.action_set.split("+"))),
-#         multiaction=action_flags.multi_actions,
-#         strict=action_flags.is_strict,
-#         demo_mode=action_flags.demo_mode,
-#     )
-
-#     return action_set
-
-
 class Think(PromptElement):
     _prompt = ""
 
@@ -684,83 +672,11 @@ response from the page.
         except ParseError as e:
             return {"think": text_answer, "parse_error": str(e)}
 
-
-# def diff(previous, new):
-#     """Return a string showing the difference between original and new.
-
-#     If the difference is above diff_threshold, return the diff string."""
-
-#     if previous == new:
-#         return "Identical", []
-
-#     if len(previous) == 0 or previous is None:
-#         return "previous is empty", []
-
-#     diff_gen = difflib.ndiff(previous.splitlines(), new.splitlines())
-
-#     diff_lines = []
-#     plus_count = 0
-#     minus_count = 0
-#     for line in diff_gen:
-#         if line.strip().startswith("+"):
-#             diff_lines.append(line)
-#             plus_count += 1
-#         elif line.strip().startswith("-"):
-#             diff_lines.append(line)
-#             minus_count += 1
-#         else:
-#             continue
-
-#     header = f"{plus_count} lines added and {minus_count} lines removed:"
-
-#     return header, diff_lines
-
-
-# class Diff(Shrinkable):
-#     def __init__(
-#         self, previous, new, prefix="", max_line_diff=20, shrink_speed=2, visible=True
-#     ) -> None:
-#         super().__init__(visible=visible)
-#         self.previous = previous
-#         self.new = new
-#         self.max_line_diff = max_line_diff
-#         self.shrink_speed = shrink_speed
-#         self.prefix = prefix
-
-#     def shrink(self):
-#         self.max_line_diff -= self.shrink_speed
-#         self.max_line_diff = max(1, self.max_line_diff)
-
-#     @property
-#     def _prompt(self) -> str:
-#         header, diff_lines = diff(self.previous, self.new)
-
-#         diff_str = "\n".join(diff_lines[: self.max_line_diff])
-#         if len(diff_lines) > self.max_line_diff:
-#             original_count = len(diff_lines)
-#             diff_str = f"{diff_str}\nDiff truncated, {original_count - self.max_line_diff} changes now shown."
-#         return f"{self.prefix}{header}\n{diff_str}\n"
-
-
 class HistoryStep(Shrinkable):
     def __init__(
         self, previous_obs, current_obs, action, memory, thought, flags: ObsFlags, shrink_speed=1
     ) -> None:
         super().__init__()
-        # self.html_diff = Diff(
-        #     previous_obs[flags.html_type],
-        #     current_obs[flags.html_type],
-        #     prefix="\n### HTML diff:\n",
-        #     shrink_speed=shrink_speed,
-        #     visible=lambda: flags.use_html and flags.use_diff,
-        # )
-        # self.ax_tree_diff = Diff(
-        #     previous_obs["axtree_txt"],
-        #     current_obs["axtree_txt"],
-        #     prefix=f"\n### Accessibility tree diff:\n",
-        #     shrink_speed=shrink_speed,
-        #     visible=lambda: flags.use_ax_tree and flags.use_diff,
-        # )
         self.error = Error(
             current_obs["last_action_error"],
             visible=(
