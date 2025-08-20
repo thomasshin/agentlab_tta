@@ -31,7 +31,8 @@ from .generic_agent_prompt import GenericPromptFlags, MainPrompt
 class GenericAgentArgs(AgentArgs):
     chat_model_args: BaseModelArgs = None
     flags: GenericPromptFlags = None
-    custom_screenshots: list = None 
+    custom_screenshots: list = None
+    custom_actions: list = None
     max_retry: int = 4
 
     def __post_init__(self):
@@ -69,7 +70,7 @@ class GenericAgentArgs(AgentArgs):
 
     def make_agent(self):
         return GenericAgent(
-            chat_model_args=self.chat_model_args, flags=self.flags, max_retry=self.max_retry, custom_screenshots=self.custom_screenshots,
+            chat_model_args=self.chat_model_args, flags=self.flags, max_retry=self.max_retry, custom_screenshots=self.custom_screenshots, custom_actions=self.custom_actions,
         )
 
 
@@ -80,13 +81,15 @@ class GenericAgent(Agent):
         chat_model_args: BaseModelArgs,
         flags: GenericPromptFlags,
         max_retry: int = 4,
-        custom_screenshots: list = None
+        custom_screenshots: list = None,
+        custom_actions: list = None
     ):
 
         self.chat_llm = chat_model_args.make_model()
         self.chat_model_args = chat_model_args
         self.max_retry = max_retry
         self.custom_screenshots = custom_screenshots # Store the data
+        self.custom_actions = custom_actions
 
         self.flags = flags
         self.action_set = self.flags.action.action_set.make_action_set()
@@ -103,6 +106,7 @@ class GenericAgent(Agent):
 
         self.obs_history.append(obs)
         print(f"DEBUG: Agent has {len(self.custom_screenshots)} custom screenshots.")
+        print(f"DEBUG: Agent has {len(self.custom_actions)} custom actions.")
         main_prompt = MainPrompt(
             action_set=self.action_set,
             obs_history=self.obs_history,
@@ -112,7 +116,8 @@ class GenericAgent(Agent):
             previous_plan=self.plan,
             step=self.plan_step,
             flags=self.flags,
-            custom_screenshots=self.custom_screenshots
+            custom_screenshots=self.custom_screenshots,
+            custom_actions=self.custom_actions
         )
 
         max_prompt_tokens, max_trunc_itr = self._get_maxes()

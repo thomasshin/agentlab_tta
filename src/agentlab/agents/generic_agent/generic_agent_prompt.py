@@ -63,7 +63,8 @@ class MainPrompt(dp.Shrinkable):
         previous_plan: str,
         step: int,
         flags: GenericPromptFlags,
-        custom_screenshots: list = None # Add this new argument
+        custom_screenshots: list = None, # Add this new argument
+        custom_actions: list = None
     ) -> None:
         super().__init__()
         self.flags = flags
@@ -88,6 +89,7 @@ class MainPrompt(dp.Shrinkable):
 
         self.action_prompt = dp.ActionPrompt(action_set, action_flags=flags.action)
         self.custom_screenshots = custom_screenshots # Store the data
+        self.custom_actions = custom_actions
 
         def time_for_caution():
             # no need for caution if we're in single action mode
@@ -101,6 +103,7 @@ class MainPrompt(dp.Shrinkable):
         self.plan = Plan(previous_plan, step, lambda: flags.use_plan)  # TODO add previous plan
         self.criticise = Criticise(visible=lambda: flags.use_criticise)
         self.memory = Memory(visible=lambda: flags.use_memory)
+        self.preferences = Preferences(visible=lambda: True) # Always visible
 
     @property
     def _prompt(self) -> HumanMessage:
@@ -119,6 +122,19 @@ class MainPrompt(dp.Shrinkable):
 """
         )
 
+        if self.custom_screenshots and self.custom_actions and len(self.custom_screenshots) == len(self.custom_actions):
+            prompt.add_text("\n# Historical Trajectory\n\nFollowing is the trajectory of Oliver for a task: 'Return SKU for the first product for video games category'. Please look at screenshots of Oliver's shopping trajectory, then think deeply to infer Oliver's general shopping preferences, such as sorting products. Remember Oliver's preferences and solve the task on behalf of him.\n\n")
+
+            for i, (screenshot_data, action) in enumerate(zip(self.custom_screenshots, self.custom_actions)):
+                prompt.add_text(f"## Oliver's Screenshot {i+1}\n")
+                if "type" in screenshot_data:
+                    content_type = screenshot_data["type"]
+                    content_data = screenshot_data.get(content_type)
+                    if content_data:
+                        prompt.add_content(content_type, content_data)
+
+                prompt.add_text(f"\n<Oliver's action>{action}</Oliver's action>\n")
+
         if self.flags.use_abstract_example:
             prompt.add_text(
                 f"""
@@ -127,6 +143,7 @@ class MainPrompt(dp.Shrinkable):
 Here is an abstract version of the answer with description of the content of
 each tag. Make sure you follow this structure, but replace the content with your
 answer:
+{self.preferences.abstract_ex}\
 {self.think.abstract_ex}\
 {self.plan.abstract_ex}\
 {self.memory.abstract_ex}\
@@ -142,6 +159,7 @@ answer:
 
 Here is a concrete example of how to format your answer.
 Make sure to follow the template with proper tags:
+{self.preferences.concrete_ex}\
 {self.think.concrete_ex}\
 {self.plan.concrete_ex}\
 {self.memory.concrete_ex}\
@@ -149,16 +167,6 @@ Make sure to follow the template with proper tags:
 {self.action_prompt.concrete_ex}\
 """
             )
-
-        # add_content 메서드를 사용하여 이미지를 추가합니다.
-        # 이것이 라이브러리가 의도한 방식입니다.
-        if self.custom_screenshots:
-            for screenshot_data in self.custom_screenshots:
-                if "type" in screenshot_data:
-                    content_type = screenshot_data["type"]
-                    content_data = screenshot_data.get(content_type)
-                    if content_data:
-                        prompt.add_content(content_type, content_data)
 
         self.obs.add_screenshot(prompt)
         
@@ -170,6 +178,7 @@ Make sure to follow the template with proper tags:
 
     def _parse_answer(self, text_answer):
         ans_dict = {}
+        ans_dict.update(self.preferences.parse_answer(text_answer))
         ans_dict.update(self.think.parse_answer(text_answer))
         ans_dict.update(self.plan.parse_answer(text_answer))
         ans_dict.update(self.memory.parse_answer(text_answer))
@@ -274,3 +283,16 @@ explore the page to find a way to activate the form.
 
     def _parse_answer(self, text_answer):
         return parse_html_tags_raise(text_answer, optional_keys=["action_draft", "criticise"])
+
+
+class Preferences(dp.PromptElement):
+    _prompt = "" # This will be added dynamically
+
+    _abstract_ex = """
+<preferences>
+Summarize all of the preferences you inferred from Oliver's past actions. Be specific.
+</preferences>
+"""
+
+    def _parse_answer(self, text_answer):
+        return parse_html_tags_raise(text_answer, optional_keys=["preferences"], merge_multiple=True)
