@@ -448,7 +448,7 @@ class Observation(Shrinkable):
             if self.flags.use_som:
                 screenshot = self.obs["screenshot_som"]
                 prompt.add_text(
-                    "\n## Screenshot:\nHere is a screenshot of the page, it is annotated with bounding boxes and corresponding bids, please take an appropriate action with Oliver's preferences you have previously inferred:"
+                    "\n## Screenshot:\nHere is a screenshot of the page, it is annotated with bounding boxes and corresponding bids, please take an appropriate action with my preferences you have previously inferred:"
                 )
             else:
                 screenshot = self.obs["screenshot"]
@@ -523,7 +523,7 @@ and with which only you can interact via specific commands.
 Review the instructions from the user, the current state of the page and all other information
 to find the best possible next action to accomplish your goal. Your answer will be interpreted
 and executed by a program, make sure to follow the formatting instructions. Before answering this task, 
-take your time to look through Oliver's previous shopping traces, induce his preferences based on his actions such as 'click'. 
+take your time to look through my previous shopping traces, induce my preferences based on my actions such as 'click'. 
 Then solve following task:
 
 ## Chat messages:
@@ -570,11 +570,11 @@ class SystemPrompt(PromptElement):
 You are an agent tasked with solving web tasks based on the content of the page and
 the user’s instructions.
 
-In addition, you are provided with screenshots showing Oliver’s previous shopping trajectories.  
-Carefully analyze his actions in these trajectories (e.g., sorting choices, filtering, 
+In addition, you are provided with screenshots showing my previous shopping trajectories.  
+Carefully analyze my actions in these trajectories (e.g., sorting choices, filtering, 
 navigation, button clicks) to infer his general shopping preferences.
 
-You must consistently apply Oliver’s inferred preferences when solving the web tasks.  
+You must consistently apply inferred preferences when solving the web tasks.  
 If you ignore them, you will fail to complete the task correctly.
 
 You can interact with the page, explore, and communicate with the user.  

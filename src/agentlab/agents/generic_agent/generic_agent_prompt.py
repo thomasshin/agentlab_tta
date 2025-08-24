@@ -123,17 +123,17 @@ class MainPrompt(dp.Shrinkable):
         )
 
         if self.custom_screenshots and self.custom_actions and len(self.custom_screenshots) == len(self.custom_actions):
-            prompt.add_text("\n# Historical Trajectory\n\nFollowing is the trajectory of Oliver for a task: 'Return SKU for the first product for video games category'. Please look at screenshots of Oliver's shopping trajectory, then think deeply to infer Oliver's general shopping preferences, such as sorting products. Remember Oliver's preferences and solve the task on behalf of him.\n\n")
+            prompt.add_text("\n# Historical Trajectory\n\nFollowings are the screenshots and actions from the user's past shopping trajectory. You must look through them closely, and think deeply to infer the user's general shopping preferences—such as sorting and filtering products. Then, please apply these preferences by default to solve the task on user's behalf.\n\n")
 
             for i, (screenshot_data, action) in enumerate(zip(self.custom_screenshots, self.custom_actions)):
-                prompt.add_text(f"## Oliver's Screenshot {i+1}\n")
+                prompt.add_text(f"## My Screenshot {i+1}\n")
                 if "type" in screenshot_data:
                     content_type = screenshot_data["type"]
                     content_data = screenshot_data.get(content_type)
                     if content_data:
                         prompt.add_content(content_type, content_data)
 
-                prompt.add_text(f"\n<Oliver's action>{action}</Oliver's action>\n")
+                prompt.add_text(f"\n<action>{action}</action>\n")
 
         if self.flags.use_abstract_example:
             prompt.add_text(
@@ -290,7 +290,7 @@ class Preferences(dp.PromptElement):
 
     _abstract_ex = """
 <preferences>
-Summarize all of the preferences you inferred from Oliver's past actions. Be specific.
+Summarize all of the preferences you inferred from my past actions. Be specific.
 </preferences>
 """
 
