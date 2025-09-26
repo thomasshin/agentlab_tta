@@ -255,3 +255,64 @@ None,GenericAgent-gpt-5-nano,websynth,bypassed,2025-08-24_19-43-20,2d584d6f-ca84
   M: src/agentlab/llm/chat_api.py",0.14.1,ad65ee0b6cdd7cc7971e573509d6d1e726079522,"  M: src/agentlab/agents/dynamic_prompting.py
   M: src/agentlab/llm/chat_api.py"
 None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-08-24_19-25-58,ac9b0ff2-731c-473b-9111-4ac329e3f369,0.364,0.145,0,11/11,None,Linux (#111-Ubuntu SMP Tue Mar 5 20:16:58 UTC 2024),3.10.11,1.44.0,v0.4.0,ad65ee0b6cdd7cc7971e573509d6d1e726079522,  M: src/agentlab/agents/dynamic_prompting.py,0.14.1,ad65ee0b6cdd7cc7971e573509d6d1e726079522,  M: src/agentlab/agents/dynamic_prompting.py
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-25_10-25-44,a2668fc7-834e-4e73-91de-4ef8c5d2cfae,0.0,0.0,0,2/2,None,Linux (#163-Ubuntu SMP Thu Aug 7 16:37:18 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-25_10-40-21,32f47e21-d750-42a2-890e-7a36df5b6299,0.0,0.0,0,2/2,None,Linux (#163-Ubuntu SMP Thu Aug 7 16:37:18 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-25_11-40-41,34a33ea0-3767-402b-adde-cc2ddc524839,0.0,0.0,0,2/2,None,Linux (#162-Ubuntu SMP Wed Jul 23 09:48:42 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-25_14-19-13,f25168fa-26bb-4a15-bfaa-af96cceec18a,0.0,0.0,0,4/4,None,Linux (#162-Ubuntu SMP Wed Jul 23 09:48:42 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-25_16-53-41,69c8b0be-af5b-49b3-876d-4d8f7e075959,0.0,0.0,0,4/4,None,Linux (#163-Ubuntu SMP Thu Aug 7 16:37:18 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-25_19-47-10,4513813f-efac-4dca-98d9-50b41219a5b6,0.0,0.0,0,7/7,None,Linux (#162-Ubuntu SMP Wed Jul 23 09:48:42 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-26_01-35-53,350d8197-29b9-419e-b9fb-26204724402b,0.143,0.132,0,7/7,None,Linux (#162-Ubuntu SMP Wed Jul 23 09:48:42 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-Qwen_Qwen2.5-VL-32B-Instruct,websynth,bypassed,2025-09-26_09-06-22,fcc668b5-fa02-4fb6-a3a0-040e05675c80,0.143,0.132,0,7/7,None,Linux (#163-Ubuntu SMP Thu Aug 7 16:37:18 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"
+None,GenericAgent-gpt-4o-mini-2024-07-18,websynth,bypassed,2025-09-26_09-54-53,3cbaafb9-cd84-48b5-b718-685feeb435e2,0.286,0.171,0,7/7,None,Linux (#163-Ubuntu SMP Thu Aug 7 16:37:18 UTC 2025),3.10.11,1.44.0,v0.4.0,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json",0.14.1,a18d9e5474af2aa3d2c2c92e4c20a2512c24d1e4,"  M: src/agentlab/agents/dynamic_prompting.py
+  M: src/agentlab/agents/generic_agent/generic_agent.py
+  M: src/agentlab/agents/generic_agent/generic_agent_prompt.py
+  ??: src/agentlab/tasks/test_tta.json"

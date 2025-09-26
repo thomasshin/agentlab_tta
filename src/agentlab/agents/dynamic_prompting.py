@@ -524,6 +524,15 @@ Review the instructions from the user, the current state of the page and all oth
 to find the best possible next action to accomplish your goal. Your answer will be interpreted
 and executed by a program, make sure to follow the formatting instructions.
 
+You MUST use the <image_summary> to understand user preferences and constraints, and your actions must reflect these preferences. Do not ignore this information.
+
+# Output Formatting
+
+- Always wrap your chosen action inside <action>...</action> tags.  
+- Example:  
+  <action>click('149')</action>  
+- Do not output actions without these tags, or the program will fail. 
+
 ## Chat messages:
 
 """
@@ -566,9 +575,20 @@ or click and wait for the reaction of the page.
 class SystemPrompt(PromptElement):
     _prompt = """\
 You are an agent trying to solve a web task based on the content of the page and
-user instructions. You must complete the task strictly according to the user’s preference: sorting products by ascending price.
-You can interact with the page and explore, and send messages to the user. Each time you
-submit an action it will be sent to the browser and you will receive a new page."""
+user instructions. You will receive user preferences enclosed in <image_summary> tags. 
+Always read and use the information inside <image_summary>. 
+These preferences describe the user's priorities, categories, and constraints relevant to the current task. 
+Base your reasoning and decisions on these insights to complete the task effectively.
+You can interact with the page and explore, and send messages to the user. 
+Each time you submit an action it will be sent to the browser and you will receive a new page.
+
+# Output Formatting
+
+- Always wrap your chosen action inside <action>...</action> tags.  
+- Example:  
+  <action>click('149')</action>  
+- Do not output actions without these tags, or the program will fail. 
+"""
 
 
 class ActionPrompt(PromptElement):

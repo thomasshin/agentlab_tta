@@ -108,7 +108,7 @@ class GenericAgent(Agent):
             step=self.plan_step,
             flags=self.flags,
         )
-
+        
         max_prompt_tokens, max_trunc_itr = self._get_maxes()
 
         system_prompt = SystemMessage(dp.SystemPrompt().prompt)

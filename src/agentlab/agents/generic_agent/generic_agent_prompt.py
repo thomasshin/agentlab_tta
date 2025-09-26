@@ -3,7 +3,14 @@ Prompt builder for GenericAgent
 
 It is based on the dynamic_prompting module from the agentlab package.
 """
-
+import os
+import base64
+import torch
+import faiss
+import numpy as np
+from PIL import Image
+from transformers import CLIPProcessor, CLIPModel
+from openai import OpenAI
 import logging
 from dataclasses import dataclass
 
@@ -52,6 +59,103 @@ class GenericPromptFlags(dp.Flags):
     flag_group: str = None
 
 
+# ===== 전역 설정: 이미지 임베딩 및 FAISS 인덱스 =====
+IMG_DIR = "/home/mila/s/shind/scratch/RAG_practice/image/user1"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+EMBEDDING_DIM = 512  # CLIP ViT-B/32 기준
+
+# CLIP 모델 로드
+CLIP_MODEL_NAME = "openai/clip-vit-base-patch32"
+CLIP_MODEL = CLIPModel.from_pretrained(CLIP_MODEL_NAME).to(DEVICE)
+CLIP_PROCESSOR = CLIPProcessor.from_pretrained(CLIP_MODEL_NAME)
+
+# 이미지 파일 로드
+IMAGE_PATHS = [os.path.join(IMG_DIR, f) for f in os.listdir(IMG_DIR) if f.endswith(".png")]
+
+# 이미지 임베딩 계산 (한 번만 수행)
+def embed_image(image_path):
+    image = Image.open(image_path).convert("RGB")
+    inputs = CLIP_PROCESSOR(images=image, return_tensors="pt").to(DEVICE)
+    with torch.no_grad():
+        embedding = CLIP_MODEL.get_image_features(**inputs)
+    embedding = embedding / embedding.norm(p=2, dim=-1, keepdim=True)
+    return embedding.cpu().numpy()
+
+EMBEDDINGS = np.vstack([embed_image(p) for p in IMAGE_PATHS]).astype("float32")
+
+# FAISS 인덱스 생성 (한 번만 수행)
+INDEX = faiss.IndexFlatIP(EMBEDDING_DIM)
+if DEVICE == "cuda":
+    res = faiss.StandardGpuResources()
+    INDEX = faiss.index_cpu_to_gpu(res, 0, INDEX)
+INDEX.add(EMBEDDINGS)
+print(f"FAISS index created for {INDEX.ntotal} images.")
+
+# ===== RAG 검색 + 요약 함수 =====
+def retrieve_and_summarize(task_instruction: str) -> str:
+    query = f"Which image is the most relevant to following task instruction?: '{task_instruction}'"
+    text_inputs = CLIP_PROCESSOR(text=[query], return_tensors="pt", padding=True).to(DEVICE)
+    with torch.no_grad():
+        text_embedding = CLIP_MODEL.get_text_features(**text_inputs)
+    text_embedding = text_embedding / text_embedding.norm(p=2, dim=-1, keepdim=True)
+    text_embedding = text_embedding.cpu().numpy()
+
+    # 상위 3개 이미지 검색
+    D, I = INDEX.search(text_embedding, k=3)
+    best_image_paths = [IMAGE_PATHS[idx] for idx in I[0]]
+
+    # 이미지를 base64로 변환
+    image_contents = []
+    for path in best_image_paths:
+        with open(path, "rb") as f:
+            image_bytes = f.read()
+        image_b64 = base64.b64encode(image_bytes).decode("utf-8")
+        image_contents.append(
+            {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{image_b64}"}}
+        )
+
+    # OpenAI API 호출
+    client = OpenAI()
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {
+                "role": "system",
+                "content": (
+                    "Look at the following images and describe my preferences in one sentence. "
+                    "Speak as if you are me (use first-person narration, starting with 'I ...')."
+                    "Always start your answer with 'I' and write in first-person narration."
+                ),
+            },
+            {
+                "role": "user",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": (
+                            "From the following images, describe my preferences in one sentence. "
+                            "Write as if I am explaining them myself (use first-person narration)."
+                        ),
+                    },
+                    *image_contents,
+                ],
+            },
+        ],
+    )
+    return response.choices[0].message.content
+
+
+# ===== ImageSummary PromptElement =====
+class ImageSummary(dp.PromptElement):
+    def __init__(self, summary: str, visible: bool = True):
+        super().__init__(visible=visible)
+        self._prompt = f"<image_summary>\n{summary}\n</image_summary>"
+
+    def _parse_answer(self, text_answer):
+        return {}
+
+
+# ===== 최종 MainPrompt 클래스 =====
 class MainPrompt(dp.Shrinkable):
     def __init__(
         self,
@@ -62,91 +166,51 @@ class MainPrompt(dp.Shrinkable):
         thoughts: list[str],
         previous_plan: str,
         step: int,
-        flags: GenericPromptFlags,
+        flags: dp.Flags,
     ) -> None:
         super().__init__()
         self.flags = flags
         self.history = dp.History(obs_history, actions, memories, thoughts, flags.obs)
+
+        # Chat / Goal instruction 분기
         if self.flags.enable_chat:
             self.instructions = dp.ChatInstructions(
                 obs_history[-1]["chat_messages"], extra_instructions=flags.extra_instructions
             )
         else:
             if sum([msg["role"] == "user" for msg in obs_history[-1].get("chat_messages", [])]) > 1:
-                logging.warning(
-                    "Agent is in goal mode, but multiple user messages are present in the chat. Consider switching to `enable_chat=True`."
-                )
+                logging.warning("Agent is in goal mode, but multiple user messages exist. Consider enable_chat=True.")
             self.instructions = dp.GoalInstructions(
                 obs_history[-1]["goal_object"], extra_instructions=flags.extra_instructions
             )
 
-        self.obs = dp.Observation(
-            obs_history[-1],
-            self.flags.obs,
-        )
-
+        self.obs = dp.Observation(obs_history[-1], self.flags.obs)
         self.action_prompt = dp.ActionPrompt(action_set, action_flags=flags.action)
 
         def time_for_caution():
-            # no need for caution if we're in single action mode
-            return flags.be_cautious and (
-                flags.action.action_set.multiaction or flags.action.action_set == "python"
-            )
+            return flags.be_cautious and (flags.action.action_set.multiaction or flags.action.action_set == "python")
 
         self.be_cautious = dp.BeCautious(visible=time_for_caution)
         self.think = dp.Think(visible=lambda: flags.use_thinking)
         self.hints = dp.Hints(visible=lambda: flags.use_hints)
-        self.plan = Plan(previous_plan, step, lambda: flags.use_plan)  # TODO add previous plan
+        self.plan = Plan(previous_plan, step, lambda: flags.use_plan)
         self.criticise = Criticise(visible=lambda: flags.use_criticise)
         self.memory = Memory(visible=lambda: flags.use_memory)
+
+        # === task instruction 기반 image summary 생성 ===
+        task_instruction = obs_history[-1]["goal_object"]
+        image_summary_text = retrieve_and_summarize(task_instruction)
+        self.image_summary = ImageSummary(image_summary_text, visible=True)
 
     @property
     def _prompt(self) -> HumanMessage:
         prompt = HumanMessage(self.instructions.prompt)
         prompt.add_text(
-            f"""\
-{self.obs.prompt}\
-{self.history.prompt}\
-{self.action_prompt.prompt}\
-{self.hints.prompt}\
-{self.be_cautious.prompt}\
-{self.think.prompt}\
-{self.plan.prompt}\
-{self.memory.prompt}\
-{self.criticise.prompt}\
-"""
+            f"{self.image_summary.prompt}"
+            f"{self.obs.prompt}{self.history.prompt}{self.action_prompt.prompt}{self.hints.prompt}"
+            f"{self.be_cautious.prompt}{self.think.prompt}{self.plan.prompt}{self.memory.prompt}"
+            f"{self.criticise.prompt}"
         )
-
-        if self.flags.use_abstract_example:
-            prompt.add_text(
-                f"""
-# Abstract Example
-
-Here is an abstract version of the answer with description of the content of
-each tag. Make sure you follow this structure, but replace the content with your
-answer:
-{self.think.abstract_ex}\
-{self.plan.abstract_ex}\
-{self.memory.abstract_ex}\
-{self.criticise.abstract_ex}\
-{self.action_prompt.abstract_ex}\
-"""
-            )
-
-        if self.flags.use_concrete_example:
-            prompt.add_text(
-                f"""
-# Concrete Example
-
-Here is a concrete example of how to format your answer.
-Make sure to follow the template with proper tags:
-{self.think.concrete_ex}\
-{self.plan.concrete_ex}\
-{self.memory.concrete_ex}\
-{self.criticise.concrete_ex}\
-{self.action_prompt.concrete_ex}\
-"""
-            )
         return self.obs.add_screenshot(prompt)
 
     def shrink(self):
@@ -161,6 +225,7 @@ Make sure to follow the template with proper tags:
         ans_dict.update(self.criticise.parse_answer(text_answer))
         ans_dict.update(self.action_prompt.parse_answer(text_answer))
         return ans_dict
+
 
 
 class Memory(dp.PromptElement):

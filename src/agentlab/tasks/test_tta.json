@@ -1,0 +1,32 @@
+[
+    {
+    "sites": [
+      "shopping"
+    ],
+    "task_id": 0,
+    "intent_template_id": 0,
+    "require_login": true,
+    "storage_state": "./.auth/shopping_state.json",
+    "start_url": "__SHOPPING__",
+    "geolocation": null,
+    "intent_template": "I usually sort products by ascending price. Could you get me the SKU code of the first product from video game category?",
+    "instantiation_dict": {
+    },
+    "intent": "I usually sort products by ascending price. Could you get me the SKU code of the first product from video game category?",
+    "require_reset": false,
+    "eval": {
+      "eval_types": [
+        "string_match"
+      ],
+      "reference_answers": {
+        "must_include": [
+        "B01GU9NZS8"
+        ]
+      },
+      "reference_url": "",
+      "program_html": [],
+      "string_note": "",
+      "reference_answer_raw_annotation": "B01GU9NZS8"
+    }
+  }
+]
