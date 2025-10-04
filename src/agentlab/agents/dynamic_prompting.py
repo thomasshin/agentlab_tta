@@ -566,8 +566,7 @@ or click and wait for the reaction of the page.
 class SystemPrompt(PromptElement):
     _prompt = """\
 You are an agent trying to solve a web task based on the content of the page and
-user instructions. You must complete the task strictly according to the user’s preference: sorting products by ascending price.
-You can interact with the page and explore, and send messages to the user. Each time you
+user instructions. You can interact with the page and explore, and send messages to the user. Each time you
 submit an action it will be sent to the browser and you will receive a new page."""
 
 
